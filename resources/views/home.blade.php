@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container mx-auto px-4">
+<div class="w-full">
     <!-- Hero Section -->
     <div class="bg-gray-100 py-16 text-center">
         <h1 class="text-4xl font-bold text-gray-900">The Sneaker Store.</h1>
@@ -9,11 +9,15 @@
     </div>
 
     <!-- Featured Products Section -->
-    <div class="mt-12">
-        <div class="flex justify-between items-center">
+    <div class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center ml-5 mr-5">
             <h2 class="text-2xl font-bold">Bestsellers</h2>
-            <a href="#" class="text-blue-500 hover:underline">SEE ALL</a>
+            <a href="#" class="text-gray-600 text-sm font-semibold tracking-wide uppercase relative group">
+                SEE ALL
+                <span class="absolute left-0 bottom-0 w-full h-[1px] bg-gray-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            </a>
         </div>
+
 
         <!-- Carousel Wrapper -->
         <div x-data="{ 
