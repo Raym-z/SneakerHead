@@ -12,9 +12,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::where('is_bestseller', true)->take(10)->get(); // Fetch 10 bestseller products
-        return view('home', compact('products'));
+        $products = Product::where('is_bestseller', true)->take(10)->get(); // Fetch bestseller products
+        $heroImages = [
+            "https://storage.googleapis.com/nookdb-4781f.appspot.com/sneaker_head_uploads/67cabf66a40ec.jpeg",
+            "https://storage.googleapis.com/nookdb-4781f.appspot.com/sneaker_head_uploads/67cabf82cf9d6.jpeg",
+            "https://storage.googleapis.com/nookdb-4781f.appspot.com/sneaker_head_uploads/67cabfa6221a0.jpeg"
+        ];
+
+        return view('home', compact('products', 'heroImages'));
     }
+
 
     public function search(Request $request)
     {

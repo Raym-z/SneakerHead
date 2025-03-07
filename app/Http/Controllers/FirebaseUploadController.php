@@ -25,9 +25,13 @@ class FirebaseUploadController extends Controller
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Limit to 2MB images
         ]);
 
-        $file = $request->file('image');
-        $uploadedUrl = $this->firebaseStorage->uploadImage($file);
+        // Upload the image to Firebase if provided
+        if ($request->hasFile('image')) {
+            $imageFile = $request->file('image');
+            $imagePath = 'sneaker_head_uploads/' . uniqid() . '.' . $imageFile->getClientOriginalExtension();
+            $imageUrl = $this->firebaseStorage->uploadFile($imageFile, $imagePath);
+        }
 
-        return back()->with('success', 'Image uploaded successfully!')->with('image_url', $uploadedUrl);
+        return back()->with('success', 'Image uploaded successfully!')->with('image_url', $imageUrl);
     }
 }

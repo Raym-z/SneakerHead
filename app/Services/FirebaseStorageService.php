@@ -11,22 +11,38 @@ class FirebaseStorageService
 
     public function __construct()
     {
-        $firebase = (new Factory)
-            ->withServiceAccount(base_path(config('services.firebase.credentials'))); // Remove invalid method
+        // Initialize Firebase using the service account credentials
+        $factory = (new Factory)
+            ->withServiceAccount(storage_path('app/firebase/serviceAccount.json'));
 
-        $this->storage = $firebase->createStorage(); // Get storage instance
+        // Create a Storage instance
+        $this->storage = $factory->createStorage();
     }
 
-    public function uploadImage($file)
+    public function uploadFile($file, $path)
     {
-        $fileName = 'sneaker_head_uploads/' . time() . '.' . $file->getClientOriginalExtension();
-        $bucket = $this->storage->getBucket(); // Get Firebase bucket
+        $bucket = $this->storage->getBucket(); // Retrieve the storage bucket
 
-        $bucket->upload(
-            file_get_contents($file->getRealPath()), // Ensure correct file reading
-            ['name' => $fileName]
+        // Upload the file to the given path in the storage bucket
+        $object = $bucket->upload(
+            fopen($file->getRealPath(), 'r'),
+            ['name' => $path]
         );
 
-        return "https://firebasestorage.googleapis.com/v0/b/" . config('services.firebase.storage_bucket') . "/o/" . urlencode($fileName) . "?alt=media";
+        // Make the file publicly readable
+        $object->update(['acl' => []], ['predefinedAcl' => 'publicRead']);
+
+        // Return the public URL of the uploaded file
+        return "https://storage.googleapis.com/{$bucket->name()}/{$path}";
+    }
+
+    public function deleteFile($path)
+    {
+        $bucket = $this->storage->getBucket(); // Retrieve the storage bucket
+        $object = $bucket->object($path); // Get the object from the bucket
+
+        if ($object->exists()) {
+            $object->delete(); // Delete the object if it exists
+        }
     }
 }
