@@ -8,9 +8,42 @@
         <p class="text-gray-600 mt-2">Find the best shoes at unbeatable prices!</p>
     </div>
 
+    <!-- Add Hero with 3 columns -->
+    <div>
+        <div class="grid grid-cols-1 md:grid-cols-3 mt-8">
+            <div class="bg-white ">
+                <!-- Image with Lazy Loading -->
+                <div x-data="{ loaded: false }" class="relative w-full h-48">
+                                <!-- Actual Image (Hidden Until Loaded) -->
+                                <img @load="loaded = true" 
+                                    src="{{ $product->image }}" 
+                                    alt="{{ $product->name }}" 
+                                    class="w-full h-48 object-cover rounded-md mt-2 transition-opacity duration-500"
+                                    :class="{ 'opacity-0': !loaded }" />
+
+                                <!-- Placeholder (Spinner) Shown Until Image Loads -->
+                                <div x-show="!loaded" class="absolute inset-0 flex items-center justify-center bg-gray-200 rounded-md">
+                                    <svg class="animate-spin h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+            </div>
+            <div class="bg-white ">
+                <h2 class="text-xl font-bold">24/7 Support</h2>
+                <p class="text-gray-600 mt-2">We're here to help you</p>
+            </div>
+            <div class="bg-white ">
+                <h2 class="text-xl font-bold">Secure Payments</h2>
+                <p class="text-gray-600 mt-2">Your payment is safe with us</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Featured Products Section -->
     <div class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center ml-5 mr-5">
+        <div class="flex justify-between items-center ml-6 mr-6">
             <h2 class="text-2xl font-bold">Bestsellers</h2>
             <a href="#" class="text-gray-600 text-sm font-semibold tracking-wide uppercase relative group">
                 SEE ALL
