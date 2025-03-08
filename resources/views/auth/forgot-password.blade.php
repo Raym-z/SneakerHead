@@ -1,6 +1,6 @@
 <x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+    <div class="mb-4 text-sm text-gray-800">
+        {{ __('Forgot your password? No problem. Just enter your email address and we will send you a link to reset your password.') }}
     </div>
 
     <!-- Session Status -->
@@ -11,14 +11,19 @@
 
         <!-- Email Address -->
         <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+            <x-input-label for="email" :value="__('Email')" class="text-gray-900" />
+            <x-text-input id="email" 
+            class="block mt-1 w-full border-gray-300 focus:ring-black focus:border-black 
+                bg-white text-black placeholder-gray-500"
+            type="email" name="email" :value="old('email')" required autofocus />
+
+            <x-input-error :messages="$errors->get('email')" class="mt-2 text-red-500" />
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
-                {{ __('Email Password Reset Link') }}
+        <!-- Submit Button -->
+        <div class="flex items-center justify-center mt-6">
+            <x-primary-button class="px-6 py-2 text-white bg-black hover:bg-gray-900 transition rounded-md">
+                {{ __('Send Reset Link') }}
             </x-primary-button>
         </div>
     </form>
