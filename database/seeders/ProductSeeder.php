@@ -24,5 +24,14 @@ class ProductSeeder extends Seeder
                 'is_bestseller' => true,
             ]);
         }
+
+        // create manual products
+        Product::create([
+            'name' => 'Nike Air Max 90',
+            'description' => 'The Nike Air Max 90 stays true to its OG roots with its iconic Waffle outsole, stitched overlays and classic, color-accented TPU plates. Retro colors celebrate the first generation while Max Air cushioning adds comfort to your journey.',
+            'price' => 1200000,
+            'image' => 'https://storage.googleapis.com/nookdb-4781f.appspot.com/sneaker_head_uploads/67cb996185fb0.png',
+            'is_bestseller' => false,
+        ]);
     }
 }

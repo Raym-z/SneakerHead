@@ -7,29 +7,23 @@
     @if($products->isEmpty())
         <p class="text-gray-500">No products found.</p>
     @else
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div class="relative w-full overflow-hidden mt-6 flex flex-wrap -mx-1">
             @foreach($products as $product)
-                <div class="bg-white shadow-md rounded-lg p-4">
-                    <!-- Image with Lazy Loading -->
-                    <div x-data="{ loaded: false }" class="relative w-full h-48">
-                        <!-- Actual Image (Hidden Until Loaded) -->
-                        <img @load="loaded = true" 
-                            src="{{ $product->image }}" 
-                            alt="{{ $product->name }}" 
-                            class="w-full h-48 object-cover rounded-md mt-2 transition-opacity duration-500"
-                            :class="{ 'opacity-0': !loaded }" />
-
-                        <!-- Placeholder (Spinner) Shown Until Image Loads -->
-                        <div x-show="!loaded" class="absolute inset-0 flex items-center justify-center bg-gray-200 rounded-md">
-                            <svg class="animate-spin h-8 w-8 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
-                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z"></path>
-                            </svg>
-                        </div>
+            <div class="w-1/5 flex-shrink-0 px-1">
+                <div class="relative bg-white overflow-hidden">
+                    <!-- Image Section (Now Zoomed and Overflow Hidden) -->
+                    <div class="relative w-full h-[280px] overflow-hidden">
+                        <img src="{{ $product->image }}" alt="{{ $product->name }}" 
+                            class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
                     </div>
-                    <h3 class="text-lg font-semibold mt-2">{{ $product->name }}</h3>
-                    <p class="text-gray-600">From {{ number_format($product->price, 2) }} kr</p>
+
+                    <!-- Product Details -->
+                    <div class="p-3 text-left">
+                        <h3 class="text-md font-semibold text-gray-900">{{ $product->name }}</h3>
+                        <p class="text-gray-700 font-medium mt-1">{{ number_format($product->price, 0) }} kr</p>
+                    </div>
                 </div>
+            </div>
             @endforeach
         </div>
 
