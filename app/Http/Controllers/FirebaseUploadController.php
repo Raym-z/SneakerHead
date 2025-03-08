@@ -22,7 +22,7 @@ class FirebaseUploadController extends Controller
     public function uploadImage(Request $request)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Limit to 2MB images
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,webp|max:2048', // Limit to 2MB images
         ]);
 
         // Upload the image to Firebase if provided

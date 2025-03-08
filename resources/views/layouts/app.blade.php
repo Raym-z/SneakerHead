@@ -41,7 +41,7 @@
 
         <!-- Footer (Optional) -->
         <footer class="bg-gray-100 text-center py-4 text-gray-600 mt-8">
-            &copy; {{ date('Y') }} The Sneaker Store. All rights reserved.
+            &copy; {{ date('Y') }} The Sneaker Head. All rights reserved.
         </footer>
     </body>
 </html>

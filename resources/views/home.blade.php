@@ -72,7 +72,7 @@
         this.startAutoScroll(); // Start auto-scroll initially
     }
 }"
-x-init="init()" class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
+x-init="init()" class="mt-8 min-h-screen px-4 sm:px-6 lg:px-8">
 
     <!-- Header with Arrows & "SEE ALL" -->
     <div class="flex items-center justify-center w-full max-w-5xl mx-auto relative ">
@@ -99,7 +99,7 @@ x-init="init()" class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
     </div>
 
     <!-- Carousel Wrapper -->
-    <div class="relative w-full overflow-hidden mt-6">
+    <div class="relative w-full overflow-hidden mt-4">
         <div class="flex"
             :class="transitionEnabled ? 'transition-transform duration-500 ease-in-out' : ''"
             :style="'transform: translateX(-' + (currentIndex * 20) + '%)'" style="width: 500%">
@@ -110,7 +110,7 @@ x-init="init()" class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
             <!-- Duplicate last 5 items at the start -->
             @foreach($products_best->slice(-8) as $product)
                 <div class="w-1/5 flex-shrink-0 px-1 ">
-                    <div class="relative bg-white overflow-hidden">
+                    <div class="relative bg-white overflow-hidden group">
                         <!-- Bestseller Badge -->
                         <div class="absolute top-2 left-2 bg-black text-white text-xs font-bold px-3 py-1 z-10">
                             Bestseller
@@ -119,14 +119,16 @@ x-init="init()" class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
                         <!-- Image Section (Now Zoomed and Overflow Hidden) -->
                         <div class="relative w-full h-[280px] overflow-hidden">
                             <img src="{{ $product->image }}" alt="{{ $product->name }}" 
-                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
                         </div>
 
                         <!-- Product Details -->
-                        <div class="p-3 text-left">
+                        <div class="p-3 text-left h-[140px]">
                             <h3 class="text-md font-semibold text-gray-900">{{ $product->name }}</h3>
-                            <p class="text-gray-700 font-medium mt-1">{{ number_format($product->price, 0) }} kr</p>
+                            <p class="text-gray-600 text-sm line-clamp-2 overflow-hidden">{{ $product->description }}</p>
+                            <p class="text-gray-700 font-medium mt-1">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                         </div>
+
                     </div>
                 </div>
             @endforeach
@@ -134,7 +136,7 @@ x-init="init()" class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
             <!-- Original product list -->
             @foreach($products_best as $product)
                 <div class="w-1/5 flex-shrink-0 px-1">
-                    <div class="relative bg-white overflow-hidden">
+                    <div class="relative bg-white overflow-hidden group">
                         <!-- Bestseller Badge -->
                         <div class="absolute top-2 left-2 bg-black text-white text-xs font-bold px-3 py-1 z-10">
                             Bestseller
@@ -143,14 +145,16 @@ x-init="init()" class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
                         <!-- Image Section (Now Zoomed and Overflow Hidden) -->
                         <div class="relative w-full h-[280px] overflow-hidden">
                             <img src="{{ $product->image }}" alt="{{ $product->name }}" 
-                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
                         </div>
 
                         <!-- Product Details -->
-                        <div class="p-3 text-left">
+                        <div class="p-3 text-left h-[140px]">
                             <h3 class="text-md font-semibold text-gray-900">{{ $product->name }}</h3>
-                            <p class="text-gray-700 font-medium mt-1">{{ number_format($product->price, 0) }} kr</p>
+                            <p class="text-gray-600 text-sm line-clamp-2 overflow-hidden">{{ $product->description }}</p>
+                            <p class="text-gray-700 font-medium mt-1">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                         </div>
+
                     </div>
                 </div>
             @endforeach
@@ -159,7 +163,7 @@ x-init="init()" class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
             <!-- Duplicate first 5 items at the end -->
             @foreach($products_best->take(8) as $product)
                 <div class="w-1/5 flex-shrink-0 px-1">
-                    <div class="relative bg-white  overflow-hidden">
+                    <div class="relative bg-white  overflow-hidden group">
                         <!-- Bestseller Badge -->
                         <div class="absolute top-2 left-2 bg-black text-white text-xs font-bold px-3 py-1 z-10">
                             Bestseller
@@ -168,14 +172,16 @@ x-init="init()" class="mt-12 min-h-screen px-4 sm:px-6 lg:px-8">
                         <!-- Image Section (Now Zoomed and Overflow Hidden) -->
                         <div class="relative w-full h-[280px] overflow-hidden">
                             <img src="{{ $product->image }}" alt="{{ $product->name }}" 
-                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"/>
+                                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"/>
                         </div>
 
                         <!-- Product Details -->
-                        <div class="p-3 text-left">
+                        <div class="p-3 text-left h-[140px]">
                             <h3 class="text-md font-semibold text-gray-900">{{ $product->name }}</h3>
-                            <p class="text-gray-700 font-medium mt-1">{{ number_format($product->price, 0) }} kr</p>
+                            <p class="text-gray-600 text-sm line-clamp-2 overflow-hidden">{{ $product->description }}</p>
+                            <p class="text-gray-700 font-medium mt-1">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                         </div>
+
                     </div>
                 </div>
             @endforeach

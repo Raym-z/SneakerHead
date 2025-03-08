@@ -14,7 +14,7 @@ class ProductController extends Controller
     {
         $products_best = Product::where('is_bestseller', true)->take(10)->get(); // Fetch bestseller products
         $heroImages = [
-            "https://storage.googleapis.com/nookdb-4781f.appspot.com/sneaker_head_uploads/67cabf66a40ec.jpeg",
+            "https://storage.googleapis.com/nookdb-4781f.appspot.com/sneaker_head_uploads/67cb0c08a5c7a.jpeg",
             "https://storage.googleapis.com/nookdb-4781f.appspot.com/sneaker_head_uploads/67cabf82cf9d6.jpeg",
             "https://storage.googleapis.com/nookdb-4781f.appspot.com/sneaker_head_uploads/67cabfa6221a0.jpeg"
         ];
